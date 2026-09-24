@@ -1,0 +1,12 @@
+schema: "classroom50/repo-config/v1"
+classroom: "etc5523"
+assignment: "assignment-3"
+owner:
+  username: "wrat0001-rgb"
+  id: 265499772
+  accepted_at: "2026-09-24T13:38:31Z"
+source:
+  owner: "ETC5523-2026"
+  owner_id: 265932295
+  repo: "assignment-3"
+  branch: "main"
