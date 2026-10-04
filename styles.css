@@ -38,3 +38,9 @@ h3 {
   color: #2F5D62;
   font-size: 1.3rem;
 }
+
+/* About page profile photo */
+.about-image {
+  object-fit: cover;
+  object-position: center 5%;
+}
