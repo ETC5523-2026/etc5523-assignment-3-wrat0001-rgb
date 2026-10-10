@@ -1,0 +1,37 @@
+/* css styles */
+/* Main navigation and title banner */
+.navbar-dark,
+.quarto-title-banner {
+  background-color: #2F5D62;
+}
+
+/* Title text in banner */
+.quarto-title-banner h1 {
+  color: #FFFFFF;
+}
+
+/* Main page background */
+body {
+  background-color: #FAFAF8;
+  color: #2B2B2B;
+}
+
+/* Headings */
+h1 {
+  color: #2F5D62;
+}
+
+h2 {
+  color: #2F5D62;
+  font-size: 1.6rem;
+}
+
+h3 {
+  color: #2F5D62;
+}
+
+/* About page profile photo */
+.about-image {
+  object-fit: cover;
+  object-position: center 5%;
+}
