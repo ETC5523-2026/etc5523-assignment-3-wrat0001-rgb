@@ -1,51 +1,97 @@
 ---
 title: "What Can Sensors Tell Us About Nitrate in Freshwater Streams?"
 author: "Waranya (Kae) Ratirotjanakul"
-date: "6 October 2026"
+date: "12 October 2026"
 categories: [water quality, environment, data]
 bibliography: references.bib
 ---
 
-# What Can Sensors Tell Us About Nitrate in Freshwater Streams?
+::: {.blog-lede}
+Freshwater quality can change in ways we cannot easily see. Can sensors help us understand these changes? A study of three US streams suggests that the answer depends on where we look.
+:::
 
 ## Why is nitrate difficult to monitor?
-Nitrate is an important part of freshwater ecosystems, but too much of it can cause serious problems. Excess nitrate can contribute to eutrophication, where increased plant and algal growth can reduce oxygen levels and harm aquatic life [@camargo2005; @bricker2008]. Keeping track of nitrate is therefore an important part of understanding and managing freshwater quality.
 
-The challenge is that nitrate levels can change over time and respond to many environmental conditions. Traditional water sampling provides valuable information, but collecting samples frequently can be costly and may miss short-term changes. High-frequency sensors offer another approach: they can continuously record nitrate and other water-quality conditions, providing a much more detailed picture of what is happening in a stream [@park2020; @rodriguezperez2020].
+Nitrate is a natural part of freshwater ecosystems, but too much of it can cause problems. Excess nitrate can contribute to eutrophication, a process where excessive plant and algal growth can reduce oxygen levels and harm aquatic life [@camargo2005; @bricker2008].
 
-But collecting more data does not automatically tell us what matters. **Which sensor measurements are most useful for understanding changes in nitrate, and do they tell the same story in different streams?** A study by @kermorvant2023 explored these questions using sensor data from three very different freshwater streams across the United States.
+:::: {.columns}
+
+::: {.column width="50%"}
+Monitoring nitrate is not always straightforward. Nitrate levels can change over time depending on environmental conditions, while traditional water sampling may miss short-term changes.
+
+High-frequency sensors offer another approach by continuously recording water-quality conditions, such as water temperature and dissolved oxygen, which may help us better understand changes in nitrate [@park2020; @rodriguezperez2020].
+:::
+
+::: {.column width="50%"}
+![Freshwater stream with a water-quality monitoring sensor. AI-generated illustrative image.](river-monitoring.png){#fig-river-monitoring width="90%"}
+:::
+
+::::
+
+However, collecting more data does not necessarily tell us which measurements are most useful for understanding nitrate.
+
+::: {.research-question}
+
+**The key question**
+
+Which sensor measurements are most useful for understanding nitrate patterns and do they tell the same story across different streams?
+
+:::
+
+A study by @kermorvant2023 explored these questions using high-frequency sensor data from three freshwater streams in the United States.
 
 
-## Three streams, three very different settings
+## Three streams, three different environments
 To explore what sensors can tell us about nitrate, @kermorvant2023 used data from the National Ecological Observatory Network (NEON), which collects high-frequency environmental measurements across the United States. The study focused on three streams in very different environmental settings: Arikaree River in Colorado, Caribou Creek in Alaska and Lewis Run in Virginia.
 
 As @tbl-sites shows, these streams differ substantially in climate, surrounding landscape and flow conditions. This makes them useful for asking whether the same sensor measurements can help us understand nitrate across different freshwater environments.
 
-| Site | Climate | Surrounding landscape | Stream conditions | Urbanised? |
-|:---|:---|:---|:---|:---:|
-| **Arikaree River, Colorado** | Semi-arid | Grasslands and agriculture | Intermittent; can dry in summer | No |
-| **Caribou Creek, Alaska** | Subarctic | Taiga and permafrost | Perennial; ice-covered in winter | No |
-| **Lewis Run, Virginia** | Temperate | Fields, pastures, woodlands and small ponds | Perennial | Yes |
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(knitr)
+library(plotly)
+```
 
-: Three contrasting freshwater sites included in the study. Source: @kermorvant2023. {#tbl-sites}
+```{r}
+#| label: tbl-sites
+#| tbl-cap: "Three contrasting freshwater sites included in the study. Source: @kermorvant2023."
+#| echo: false
 
-## The same measurements, but a different story
-Despite their very different environments, the three streams had something surprising in common. The same six measurements, including specific conductance, dissolved oxygen, water temperature, turbidity, time and surface-water elevation, were useful for understanding nitrate at all three sites. Together with the model's temporal component, they explained about 99% of the variation in nitrate levels at each stream [@kermorvant2023].
+sites <- tribble(
+  ~Site, ~Climate, ~`Surrounding landscape`, ~`Stream conditions`, ~`Urbanised?`,
+  "Arikaree River, Colorado", "Semi-arid",
+  "Grasslands and agriculture", "Intermittent; can dry in summer", "No",
+  "Caribou Creek, Alaska", "Subarctic",
+  "Taiga and permafrost", "Perennial; ice-covered in winter", "No",
+  "Lewis Run, Virginia", "Temperate",
+  "Fields, pastures, woodlands and small ponds", "Perennial", "Yes"
+)
 
-However, **the same measurements did not matter equally everywhere**. As @fig-variable-importance shows, the relative importance of each measurement changed from one stream to another.
+knitr::kable(
+  sites,
+  format = "html",
+  table.attr = 'class="themed-table"'
+)
+```
+
+These differences matter because local environmental conditions may influence nitrate patterns. For example, Arikaree River can dry out during summer, while Caribou Creek remains flowing throughout the year, even though it may be covered by ice in winter. Such differences help explain why it is important to compare streams rather than assume they all behave in the same way.
+
+## Same factors, different stories
+Despite their very different environments, the three streams had something interesting in common. The study identified the same six factors as useful for understanding nitrate patterns across all three sites: specific conductance (how well water conducts electricity), dissolved oxygen, water temperature, turbidity (water cloudiness), time and water level. The statistical models provided a very close fit to the observed nitrate patterns, explaining approximately 99% of the deviance at each stream [@kermorvant2023].
+
+However, the **same factors did not matter equally everywhere**. As @fig-variable-importance shows, their relative importance differed between the three streams.
 
 ```{r}
 #| label: fig-variable-importance
-#| fig-cap: "Relative importance of six factors in explaining nitrate patterns across three freshwater streams. Approximate values digitised visually from Kermorvant et al. (2023), Figure 4."
+#| fig-cap: "Relative importance of six factors in explaining nitrate patterns across three freshwater streams. Approximate values visually estimated from Kermorvant et al. (2023), Figure 4. Dark blue indicates the highest contribution at each site."
 #| echo: false
 #| warning: false
 #| message: false
-#| fig-width: 10
-#| fig-height: 5
+#| column: page
 
-library(tidyverse)
-
-# Approximate values visually estimated from Kermorvant et al. (2023), Figure 4
+# Approximate values from Kermorvant et al. (2023), Figure 4
 importance_data <- tribble(
   ~site, ~variable, ~importance,
   "Arikaree River", "Time", 4.2,
@@ -70,7 +116,7 @@ importance_data <- tribble(
   "Lewis Run", "Dissolved oxygen", 11.5
 )
 
-# Highlight the most important factor within each stream
+# Prepare data and identify the highest contribution
 plot_data <- importance_data |>
   group_by(site) |>
   mutate(
@@ -91,74 +137,173 @@ plot_data <- importance_data |>
     ),
     site = factor(
       site,
-      levels = c("Arikaree River", "Caribou Creek", "Lewis Run")
+      levels = c(
+        "Arikaree River",
+        "Caribou Creek",
+        "Lewis Run"
+      )
+    ),
+    hover_text = paste0(
+      "<b>", site, "</b>",
+      "<br>Factor: ", variable,
+      "<br>Contribution: ", importance, "%",
+      if_else(
+        highest,
+        "<br><b>Highest at this site</b>",
+        ""
+      )
     )
   )
 
-ggplot(plot_data, aes(x = importance, y = variable)) +
-  geom_segment(
-    aes(x = 0, xend = importance, yend = variable),
-    colour = "#D5DEDD",
+# Create the plot
+p <- ggplot(
+  plot_data,
+  aes(x = importance, y = variable)
+) +
+
+  # Vertical reference line at zero
+  geom_vline(
+    xintercept = 0,
+    colour = "#8299A3",
     linewidth = 0.7
   ) +
-  geom_point(
-    aes(colour = highest),
-    size = 3.5
+
+  # Horizontal lines from zero to each point
+  geom_segment(
+    aes(
+      x = 0,
+      xend = importance,
+      yend = variable
+    ),
+    colour = "#B8D4DF",
+    linewidth = 0.5
   ) +
+
+  # Points with interactive hover information
+  geom_point(
+    aes(
+      colour = highest,
+      text = hover_text
+    ),
+    size = 2.5
+  ) +
+
+  # Three panels
   facet_wrap(~site, ncol = 3) +
+
+  # Colours matching the website theme
   scale_colour_manual(
-    values = c("FALSE" = "#AAB5B4", "TRUE" = "#2F5D62"),
+    values = c(
+      "FALSE" = "#428BA8",
+      "TRUE" = "#24566B"
+    ),
     guide = "none"
   ) +
+
+  # X-axis
   scale_x_continuous(
-    limits = c(0, 20),
+    limits = c(-0.5, 20),
     breaks = seq(0, 20, 5),
-    expand = expansion(mult = c(0, 0.03))
+    expand = expansion(mult = c(0, 0.02))
   ) +
-    labs(
-        title = "Which factors help explain nitrate? It depends on the stream.",
-        subtitle = "The same six factors contribute differently across three US streams",
-        x = "Contribution to explaining nitrate patterns (%)",
-        y = NULL,
-        caption = paste(
-            "Source: Approximate values estimated from Kermorvant et al. (2023), Figure 4.",
-            "Dark teal indicates the largest contribution at each site.",
-            sep = "\n"
-        )
-    ) +
-  theme_minimal(base_size = 13) +
+
+  # Axis labels
+  labs(
+    x = "Contribution to explaining nitrate patterns (%)",
+    y = NULL
+  ) +
+
+  # Theme
+  theme_minimal(base_size = 11) +
   theme(
-    plot.title = element_text(face = "bold", colour = "#2F5D62"),
-    plot.subtitle = element_text(colour = "#555555"),
-    strip.text = element_text(face = "bold", colour = "#2F5D62"),
+    # Subtle border around the plot
+    plot.background = element_rect(
+      fill = "#FAFAF8",
+      colour = "#D5E3E8",
+      linewidth = 0.5
+    ),
+
+    # Light blue panel backgrounds
+    panel.background = element_rect(
+      fill = "#F0F6F8",
+      colour = NA
+    ),
+
+    # Panel titles
+    strip.text = element_text(
+      face = "bold",
+      colour = "#24566B",
+      size = 11
+    ),
+
+    # Axis text
+    axis.text = element_text(
+      colour = "#2B2B2B",
+      size = 10
+    ),
+
+    # Axis title
+    axis.title = element_text(
+      colour = "#2B2B2B",
+      size = 11
+    ),
+
+    # Grid lines
     panel.grid.major.y = element_blank(),
     panel.grid.minor = element_blank(),
+
+    # Remove legend
     legend.position = "none",
-    plot.caption = element_text(hjust = 0, size = 9),
-    panel.spacing = unit(1.2, "lines")
+
+    # Spacing between panels
+    panel.spacing = grid::unit(1, "lines"),
+
+    # Space inside plot border
+    plot.margin = margin(12, 12, 12, 12)
   )
+
+# Convert to interactive Plotly graph
+interactive_plot <- ggplotly(
+  p,
+  tooltip = "text",
+  height = 350
+) |>
+  layout(
+    autosize = TRUE
+  ) |>
+  config(
+    responsive = TRUE,
+    displaylogo = FALSE
+  )
+
+# Display interactive plot
+interactive_plot
 ```
 
 
-At **Lewis Run**, specific conductance stood out as the most important measured variable, contributing more than 15% to the model's explanatory power. It was also the most important measured variable at **Caribou Creek**, at around 10%. At **Arikaree River**, however, no single measured water-quality variable clearly dominated. Instead, changes over time played a particularly important role in explaining nitrate patterns [@kermorvant2023].
+At **Arikaree River**, the factors had relatively similar contributions, with water temperature slightly higher at around 5%. At **Caribou Creek**, specific conductance stood out at around 10%, suggesting that this measure of water chemistry was particularly informative for understanding nitrate patterns.
 
-This comparison answers an important part of our original question: sensors can provide valuable information about nitrate across very different streams, but **which measurements tell us the most depends on where we are monitoring**.
+At **Lewis Run**, time had the highest contribution at around 16%. Unlike the other factors, time is not a water-quality measurement. Its importance suggests that changes across the monitoring period played a particularly important role, although the analysis cannot tell us exactly what caused those changes [@kermorvant2023].
+
+These findings help answer our original question: **the same factors can be useful across different streams, but their importance depends on where we are monitoring**.
 
 
 ## What does this mean for freshwater monitoring?
-So, do sensors tell the same story everywhere? **Not quite**.
+So, do sensors tell the same story everywhere? **Not quite.**
 
-The study shows that high-frequency sensors can provide a detailed picture of how nitrate changes alongside other water-quality conditions. Although the same six factors were useful across all three streams, their importance varied from place to place. **This means the same factors may be worth considering across streams, but their monitoring priority should not be assumed to be the same everywhere** [@kermorvant2023].
+The study shows that high-frequency sensor data can help us understand nitrate patterns across different freshwater streams. Although the same six factors were useful at all three sites, their importance varied from place to place [@kermorvant2023].
 
-For freshwater monitoring, this makes **local context important**. A measurement that provides useful information about nitrate in one stream may be less informative in another. Rather than treating one monitoring approach as universal, environmental professionals can use this type of analysis to identify which measurements are most informative for their particular stream and make more targeted decisions about where monitoring resources are spent.
+For freshwater monitoring, this makes **local conditions important**. A measurement that provides useful information in one stream may be less informative in another. Rather than using the same monitoring priorities everywhere, environmental professionals can consider which measurements are most useful for their particular stream.
 
+However, the study examined only three streams over roughly two years. More research across different environments and longer periods is needed before applying these findings more broadly.
 
-## What should we take from this?
-Monitoring nitrate is challenging because stream conditions can change quickly, and occasional water samples may not capture the full picture. High-frequency sensors can help fill this gap by providing a much more detailed view of how nitrate changes alongside other water-quality conditions.
+::: {.key-takeaway}
 
-The study by @kermorvant2023 shows both the potential and the limits of this approach. Across three very different streams, the same six measurements were useful for understanding nitrate, and the final models explained about 99% of the variation in nitrate levels. However, the importance of individual measurements differed between sites. **The key message is not that one sensor matters most everywhere, but that the value of each measurement depends on the stream being monitored.**
+**The key takeaway**
 
-These findings are promising, but they should not be treated as a universal recipe for freshwater monitoring. The study examined only three streams using roughly two years of data, and further work across more locations and longer periods is needed [@kermorvant2023]. Still, high-frequency sensor data can give environmental professionals a richer understanding of nitrate dynamics and help them make more informed, locally appropriate monitoring decisions.
+There is no single monitoring priority that works best everywhere. Understanding local conditions can help make freshwater monitoring more targeted and informative.
+
+:::
 
 ## References
 
