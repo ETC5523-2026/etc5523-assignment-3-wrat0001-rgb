@@ -34,7 +34,111 @@ Despite their very different environments, the three streams had something surpr
 
 However, **the same measurements did not matter equally everywhere**. As @fig-variable-importance shows, the relative importance of each measurement changed from one stream to another.
 
-![Relative importance of water-quality measurements for explaining nitrate variation across the three study sites. Source: Kermorvant et al. (2023), Figure 4.](fig4.PNG){#fig-variable-importance}
+```{r}
+#| label: fig-variable-importance
+#| fig-cap: "Relative importance of six factors in explaining nitrate patterns across three freshwater streams. Approximate values digitised visually from Kermorvant et al. (2023), Figure 4."
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 5
+
+library(tidyverse)
+
+# Approximate values visually estimated from Kermorvant et al. (2023), Figure 4
+importance_data <- tribble(
+  ~site, ~variable, ~importance,
+  "Arikaree River", "Time", 4.2,
+  "Arikaree River", "Water temperature", 4.6,
+  "Arikaree River", "Water level", 3.4,
+  "Arikaree River", "Specific conductance", 3.3,
+  "Arikaree River", "Water cloudiness", 3.5,
+  "Arikaree River", "Dissolved oxygen", 3.3,
+
+  "Caribou Creek", "Time", 5.8,
+  "Caribou Creek", "Water temperature", 5.6,
+  "Caribou Creek", "Water level", 4.9,
+  "Caribou Creek", "Specific conductance", 10.0,
+  "Caribou Creek", "Water cloudiness", 1.8,
+  "Caribou Creek", "Dissolved oxygen", 5.7,
+
+  "Lewis Run", "Time", 16.4,
+  "Lewis Run", "Water temperature", 11.2,
+  "Lewis Run", "Water level", 12.9,
+  "Lewis Run", "Specific conductance", 12.9,
+  "Lewis Run", "Water cloudiness", 12.1,
+  "Lewis Run", "Dissolved oxygen", 11.5
+)
+
+# Highlight the most important factor within each stream
+plot_data <- importance_data |>
+  group_by(site) |>
+  mutate(
+    highest = importance == max(importance)
+  ) |>
+  ungroup() |>
+  mutate(
+    variable = factor(
+      variable,
+      levels = rev(c(
+        "Time",
+        "Water temperature",
+        "Water level",
+        "Specific conductance",
+        "Water cloudiness",
+        "Dissolved oxygen"
+      ))
+    ),
+    site = factor(
+      site,
+      levels = c("Arikaree River", "Caribou Creek", "Lewis Run")
+    )
+  )
+
+ggplot(plot_data, aes(x = importance, y = variable)) +
+  geom_segment(
+    aes(x = 0, xend = importance, yend = variable),
+    colour = "#D5DEDD",
+    linewidth = 0.7
+  ) +
+  geom_point(
+    aes(colour = highest),
+    size = 3.5
+  ) +
+  facet_wrap(~site, ncol = 3) +
+  scale_colour_manual(
+    values = c("FALSE" = "#AAB5B4", "TRUE" = "#2F5D62"),
+    guide = "none"
+  ) +
+  scale_x_continuous(
+    limits = c(0, 20),
+    breaks = seq(0, 20, 5),
+    expand = expansion(mult = c(0, 0.03))
+  ) +
+    labs(
+        title = "Which factors help explain nitrate? It depends on the stream.",
+        subtitle = "The same six factors contribute differently across three US streams",
+        x = "Contribution to explaining nitrate patterns (%)",
+        y = NULL,
+        caption = paste(
+            "Source: Approximate values estimated from Kermorvant et al. (2023), Figure 4.",
+            "Dark teal indicates the largest contribution at each site.",
+            sep = "\n"
+        )
+    ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", colour = "#2F5D62"),
+    plot.subtitle = element_text(colour = "#555555"),
+    strip.text = element_text(face = "bold", colour = "#2F5D62"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.position = "none",
+    plot.caption = element_text(hjust = 0, size = 9),
+    panel.spacing = unit(1.2, "lines")
+  )
+```
+
 
 At **Lewis Run**, specific conductance stood out as the most important measured variable, contributing more than 15% to the model's explanatory power. It was also the most important measured variable at **Caribou Creek**, at around 10%. At **Arikaree River**, however, no single measured water-quality variable clearly dominated. Instead, changes over time played a particularly important role in explaining nitrate patterns [@kermorvant2023].
 

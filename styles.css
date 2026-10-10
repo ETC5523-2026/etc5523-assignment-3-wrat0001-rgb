@@ -1,9 +1,4 @@
 /* css styles */
-/* Make right-side navbar items closer together */
-.navbar-nav.ms-auto {
-  gap: 0.3rem;
-}
-
 /* Main navigation and title banner */
 .navbar-dark,
 .quarto-title-banner {
@@ -13,20 +8,17 @@
 /* Title text in banner */
 .quarto-title-banner h1 {
   color: #FFFFFF;
-  font-size: 2rem;
 }
 
 /* Main page background */
 body {
   background-color: #FAFAF8;
   color: #2B2B2B;
-  font-size: 16px;
 }
 
 /* Headings */
 h1 {
   color: #2F5D62;
-  font-size: 2rem;
 }
 
 h2 {
@@ -36,7 +28,6 @@ h2 {
 
 h3 {
   color: #2F5D62;
-  font-size: 1.3rem;
 }
 
 /* About page profile photo */
