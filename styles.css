@@ -74,6 +74,15 @@ a:hover {
 }
 
 
+/* Align Figure 1 caption with the centred image */
+#fig-river-monitoring figcaption {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+
 /* Themed table */
 table.themed-table {
   width: 100%;
