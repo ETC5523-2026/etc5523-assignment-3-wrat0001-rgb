@@ -1,13 +1,23 @@
 ---
 title: "About"
-image: profile.jpg
+image: kae-profile.jpg
 about:
   template: jolla
   links:
     - icon: github
       text: Github
-      href: https://github.com/etc5523-2022
+      href: https://github.com/wrat0001-rgb
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/waranya-ratirotjanakul-a09b74175/
+    - icon: envelope
+      text: Email
+      href: mailto:waranya.ratirotjanakul@gmail.com
 
 ---
 
-This is a blog template for the ETC5523 Communicating with Data assessment at Monash University.
+Hi, I'm Kae! I'm currently pursuing a Master of Business Analytics at Monash University as an Australia Awards Mekong–Australia Partnership (AA-MAP) Scholar.
+
+With a background in chemistry and polymer science, I have over six years of experience in R&D, market development, and product management in the chemical and manufacturing industries. My experience sparked an interest in using data to connect science and business and support better decisions.
+
+I'm particularly interested in data analytics for sustainability, energy, and manufacturing. Through this blog, I hope to share what I'm learning and explore how data can be turned into clear, meaningful stories.

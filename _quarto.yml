@@ -2,15 +2,20 @@ project:
   type: website
 
 website:
-  title: "blog-template"
+  title: "Waranya (Kae) Ratirotjanakul"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/etc5523-2022
+        href: https://github.com/wrat0001-rgb
+        aria-label: GitHub
+        target: _blank
+      - icon: linkedin
+        href: https://www.linkedin.com/in/waranya-ratirotjanakul-a09b74175/
+        aria-label: LinkedIn
+        target: _blank
 format:
   html:
-    theme: cosmo
     css: styles.css
 
 

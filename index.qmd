@@ -1,5 +1,6 @@
 ---
-title: "ETC5523 Blog Assessment"
+title: "Data in Perspective"
+subtitle: "A Data Storytelling Blog"
 listing:
   contents: posts
   sort: "date desc"
