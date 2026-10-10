@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Waranya (Kae) Ratirotjanakul">
-<meta name="dcterms.date" content="2026-10-06">
+<meta name="dcterms.date" content="2026-10-12">
 
 <title>What Can Sensors Tell Us About Nitrate in Freshwater Streams? – Waranya (Kae) Ratirotjanakul</title>
 <style>
@@ -91,6 +91,14 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../site_libs/plotly-binding-4.12.1/plotly.js"></script>
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -160,7 +168,7 @@ div.csl-indent {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 6, 2026</p>
+        <p class="date">October 12, 2026</p>
       </div>
     </div>
     
@@ -173,107 +181,126 @@ div.csl-indent {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<section id="what-can-sensors-tell-us-about-nitrate-in-freshwater-streams" class="level1">
-<h1>What Can Sensors Tell Us About Nitrate in Freshwater Streams?</h1>
+<div class="blog-lede">
+<p>Freshwater quality can change in ways we cannot easily see. Can sensors help us understand these changes? A study of three US streams suggests that the answer depends on where we look.</p>
+</div>
 <section id="why-is-nitrate-difficult-to-monitor" class="level2">
 <h2 class="anchored" data-anchor-id="why-is-nitrate-difficult-to-monitor">Why is nitrate difficult to monitor?</h2>
-<p>Nitrate is an important part of freshwater ecosystems, but too much of it can cause serious problems. Excess nitrate can contribute to eutrophication, where increased plant and algal growth can reduce oxygen levels and harm aquatic life <span class="citation" data-cites="camargo2005 bricker2008">(<a href="#ref-camargo2005" role="doc-biblioref">Camargo et al. 2005</a>; <a href="#ref-bricker2008" role="doc-biblioref">Bricker et al. 2008</a>)</span>. Keeping track of nitrate is therefore an important part of understanding and managing freshwater quality.</p>
-<p>The challenge is that nitrate levels can change over time and respond to many environmental conditions. Traditional water sampling provides valuable information, but collecting samples frequently can be costly and may miss short-term changes. High-frequency sensors offer another approach: they can continuously record nitrate and other water-quality conditions, providing a much more detailed picture of what is happening in a stream <span class="citation" data-cites="park2020 rodriguezperez2020">(<a href="#ref-park2020" role="doc-biblioref">Park et al. 2020</a>; <a href="#ref-rodriguezperez2020" role="doc-biblioref">Rodriguez-Perez et al. 2020</a>)</span>.</p>
-<p>But collecting more data does not automatically tell us what matters. <strong>Which sensor measurements are most useful for understanding changes in nitrate, and do they tell the same story in different streams?</strong> A study by <span class="citation" data-cites="kermorvant2023">Kermorvant et al. (<a href="#ref-kermorvant2023" role="doc-biblioref">2023</a>)</span> explored these questions using sensor data from three very different freshwater streams across the United States.</p>
+<p>Nitrate is a natural part of freshwater ecosystems, but too much of it can cause problems. Excess nitrate can contribute to eutrophication, a process where excessive plant and algal growth can reduce oxygen levels and harm aquatic life <span class="citation" data-cites="camargo2005 bricker2008">(<a href="#ref-camargo2005" role="doc-biblioref">Camargo et al. 2005</a>; <a href="#ref-bricker2008" role="doc-biblioref">Bricker et al. 2008</a>)</span>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Monitoring nitrate is not always straightforward. Nitrate levels can change over time depending on environmental conditions, while traditional water sampling may miss short-term changes.</p>
+<p>High-frequency sensors offer another approach by continuously recording water-quality conditions, such as water temperature and dissolved oxygen, which may help us better understand changes in nitrate <span class="citation" data-cites="park2020 rodriguezperez2020">(<a href="#ref-park2020" role="doc-biblioref">Park et al. 2020</a>; <a href="#ref-rodriguezperez2020" role="doc-biblioref">Rodriguez-Perez et al. 2020</a>)</span>.</p>
+</div><div class="column" style="width:50%;">
+<div id="fig-river-monitoring" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-river-monitoring-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="river-monitoring.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-river-monitoring-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Freshwater stream with a water-quality monitoring sensor. AI-generated illustrative image.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>However, collecting more data does not necessarily tell us which measurements are most useful for understanding nitrate.</p>
+<div class="research-question">
+<p><strong>The key question</strong></p>
+<p>Which sensor measurements are most useful for understanding nitrate patterns and do they tell the same story across different streams?</p>
+</div>
+<p>A study by <span class="citation" data-cites="kermorvant2023">Kermorvant et al. (<a href="#ref-kermorvant2023" role="doc-biblioref">2023</a>)</span> explored these questions using high-frequency sensor data from three freshwater streams in the United States.</p>
 </section>
-<section id="three-streams-three-very-different-settings" class="level2">
-<h2 class="anchored" data-anchor-id="three-streams-three-very-different-settings">Three streams, three very different settings</h2>
+<section id="three-streams-three-different-environments" class="level2">
+<h2 class="anchored" data-anchor-id="three-streams-three-different-environments">Three streams, three different environments</h2>
 <p>To explore what sensors can tell us about nitrate, <span class="citation" data-cites="kermorvant2023">Kermorvant et al. (<a href="#ref-kermorvant2023" role="doc-biblioref">2023</a>)</span> used data from the National Ecological Observatory Network (NEON), which collects high-frequency environmental measurements across the United States. The study focused on three streams in very different environmental settings: Arikaree River in Colorado, Caribou Creek in Alaska and Lewis Run in Virginia.</p>
 <p>As <a href="#tbl-sites" class="quarto-xref">Table&nbsp;1</a> shows, these streams differ substantially in climate, surrounding landscape and flow conditions. This makes them useful for asking whether the same sensor measurements can help us understand nitrate across different freshwater environments.</p>
-<div id="tbl-sites" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div class="cell">
+<div id="tbl-sites" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sites-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Three contrasting freshwater sites included in the study. Source: <span class="citation" data-cites="kermorvant2023">Kermorvant et al. (<a href="#ref-kermorvant2023" role="doc-biblioref">2023</a>)</span>.
 </figcaption>
 <div aria-describedby="tbl-sites-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 23%">
-</colgroup>
+<div class="cell-output-display">
+<table class="themed-table cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Site</th>
-<th style="text-align: left;">Climate</th>
-<th style="text-align: left;">Surrounding landscape</th>
-<th style="text-align: left;">Stream conditions</th>
-<th style="text-align: center;">Urbanised?</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Site</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Climate</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Surrounding landscape</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stream conditions</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Urbanised?</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Arikaree River, Colorado</strong></td>
+<td style="text-align: left;">Arikaree River, Colorado</td>
 <td style="text-align: left;">Semi-arid</td>
 <td style="text-align: left;">Grasslands and agriculture</td>
 <td style="text-align: left;">Intermittent; can dry in summer</td>
-<td style="text-align: center;">No</td>
+<td style="text-align: left;">No</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Caribou Creek, Alaska</strong></td>
+<td style="text-align: left;">Caribou Creek, Alaska</td>
 <td style="text-align: left;">Subarctic</td>
 <td style="text-align: left;">Taiga and permafrost</td>
 <td style="text-align: left;">Perennial; ice-covered in winter</td>
-<td style="text-align: center;">No</td>
+<td style="text-align: left;">No</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Lewis Run, Virginia</strong></td>
+<td style="text-align: left;">Lewis Run, Virginia</td>
 <td style="text-align: left;">Temperate</td>
 <td style="text-align: left;">Fields, pastures, woodlands and small ponds</td>
 <td style="text-align: left;">Perennial</td>
-<td style="text-align: center;">Yes</td>
+<td style="text-align: left;">Yes</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
 </figure>
 </div>
+</div>
+<p>These differences matter because local environmental conditions may influence nitrate patterns. For example, Arikaree River can dry out during summer, while Caribou Creek remains flowing throughout the year, even though it may be covered by ice in winter. Such differences help explain why it is important to compare streams rather than assume they all behave in the same way.</p>
 </section>
-<section id="the-same-measurements-but-a-different-story" class="level2">
-<h2 class="anchored" data-anchor-id="the-same-measurements-but-a-different-story">The same measurements, but a different story</h2>
-<p>Despite their very different environments, the three streams had something surprising in common. The same six measurements, including specific conductance, dissolved oxygen, water temperature, turbidity, time and surface-water elevation, were useful for understanding nitrate at all three sites. Together with the model’s temporal component, they explained about 99% of the variation in nitrate levels at each stream <span class="citation" data-cites="kermorvant2023">(<a href="#ref-kermorvant2023" role="doc-biblioref">Kermorvant et al. 2023</a>)</span>.</p>
-<p>However, <strong>the same measurements did not matter equally everywhere</strong>. As <a href="#fig-variable-importance" class="quarto-xref">Figure&nbsp;1</a> shows, the relative importance of each measurement changed from one stream to another.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-variable-importance" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="same-factors-different-stories" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="same-factors-different-stories">Same factors, different stories</h2>
+<p>Despite their very different environments, the three streams had something interesting in common. The study identified the same six factors as useful for understanding nitrate patterns across all three sites: specific conductance (how well water conducts electricity), dissolved oxygen, water temperature, turbidity (water cloudiness), time and water level. The statistical models provided a very close fit to the observed nitrate patterns, explaining approximately 99% of the deviance at each stream <span class="citation" data-cites="kermorvant2023">(<a href="#ref-kermorvant2023" role="doc-biblioref">Kermorvant et al. 2023</a>)</span>.</p>
+<p>However, the <strong>same factors did not matter equally everywhere</strong>. As <a href="#fig-variable-importance" class="quarto-xref">Figure&nbsp;2</a> shows, their relative importance differed between the three streams.</p>
+<div class="cell column-page">
+<div id="fig-variable-importance" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-variable-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-variable-importance-1.png" class="img-fluid figure-img" width="960">
+<div id="htmlwidget-4a8632c40c09d61d7215" style="width:100%;height:338px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4a8632c40c09d61d7215">{"x":{"data":[{"x":[0,0],"y":[0.40000000000000002,6.5999999999999996],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(130,153,163,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0],"y":[0.40000000000000002,6.5999999999999996],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(130,153,163,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0],"y":[0.40000000000000002,6.5999999999999996],"text":"","type":"scatter","mode":"lines","line":{"width":2.6456692913385824,"color":"rgba(130,153,163,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,4.2000000000000002,null,0,4.5999999999999996,null,0,3.3999999999999999,null,0,3.2999999999999998,null,0,3.5,null,0,3.2999999999999998],"y":[6,6,null,5,5,null,4,4,null,3,3,null,2,2,null,1,1],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(184,212,223,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,5.7999999999999998,null,0,5.5999999999999996,null,0,4.9000000000000004,null,0,10,null,0,1.8,null,0,5.7000000000000002],"y":[6,6,null,5,5,null,4,4,null,3,3,null,2,2,null,1,1],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(184,212,223,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,16.399999999999999,null,0,11.199999999999999,null,0,12.9,null,0,12.9,null,0,12.1,null,0,11.5],"y":[6,6,null,5,5,null,4,4,null,3,3,null,2,2,null,1,1],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(184,212,223,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.2000000000000002,4.5999999999999996,3.3999999999999999,3.2999999999999998,3.5,3.2999999999999998],"y":[6,5,4,3,2,1],"text":["<b>Arikaree River<\/b><br>Factor: Time<br>Contribution: 4.2%","<b>Arikaree River<\/b><br>Factor: Water temperature<br>Contribution: 4.6%<br><b>Highest at this site<\/b>","<b>Arikaree River<\/b><br>Factor: Water level<br>Contribution: 3.4%","<b>Arikaree River<\/b><br>Factor: Specific conductance<br>Contribution: 3.3%","<b>Arikaree River<\/b><br>Factor: Water cloudiness<br>Contribution: 3.5%","<b>Arikaree River<\/b><br>Factor: Dissolved oxygen<br>Contribution: 3.3%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":["rgba(66,139,168,1)","rgba(36,86,107,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)"],"opacity":1,"size":9.4488188976377963,"symbol":"circle","line":{"width":1.8897637795275593,"color":["rgba(66,139,168,1)","rgba(36,86,107,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)"]}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.7999999999999998,5.5999999999999996,4.9000000000000004,10,1.8,5.7000000000000002],"y":[6,5,4,3,2,1],"text":["<b>Caribou Creek<\/b><br>Factor: Time<br>Contribution: 5.8%","<b>Caribou Creek<\/b><br>Factor: Water temperature<br>Contribution: 5.6%","<b>Caribou Creek<\/b><br>Factor: Water level<br>Contribution: 4.9%","<b>Caribou Creek<\/b><br>Factor: Specific conductance<br>Contribution: 10%<br><b>Highest at this site<\/b>","<b>Caribou Creek<\/b><br>Factor: Water cloudiness<br>Contribution: 1.8%","<b>Caribou Creek<\/b><br>Factor: Dissolved oxygen<br>Contribution: 5.7%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":["rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(36,86,107,1)","rgba(66,139,168,1)","rgba(66,139,168,1)"],"opacity":1,"size":9.4488188976377963,"symbol":"circle","line":{"width":1.8897637795275593,"color":["rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(36,86,107,1)","rgba(66,139,168,1)","rgba(66,139,168,1)"]}},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[16.399999999999999,11.199999999999999,12.9,12.9,12.1,11.5],"y":[6,5,4,3,2,1],"text":["<b>Lewis Run<\/b><br>Factor: Time<br>Contribution: 16.4%<br><b>Highest at this site<\/b>","<b>Lewis Run<\/b><br>Factor: Water temperature<br>Contribution: 11.2%","<b>Lewis Run<\/b><br>Factor: Water level<br>Contribution: 12.9%","<b>Lewis Run<\/b><br>Factor: Specific conductance<br>Contribution: 12.9%","<b>Lewis Run<\/b><br>Factor: Water cloudiness<br>Contribution: 12.1%","<b>Lewis Run<\/b><br>Factor: Dissolved oxygen<br>Contribution: 11.5%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":["rgba(36,86,107,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)"],"opacity":1,"size":9.4488188976377963,"symbol":"circle","line":{"width":1.8897637795275593,"color":["rgba(36,86,107,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)","rgba(66,139,168,1)"]}},"hoveron":"points","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":46.552096305520962,"r":15.940224159402243,"b":47.488584474885855,"l":152.42839352428396},"plot_bgcolor":"rgba(240,246,248,1)","paper_bgcolor":"rgba(250,250,248,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,0.30476190476190473],"automargin":true,"type":"linear","autorange":false,"range":[-0.5,20.41],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,4.9999999999999991,10.000000000000002,14.999999999999998,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(43,43,43,1)","family":"","size":13.283520132835205},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"annotations":[{"text":"Contribution to explaining nitrate patterns (%)","x":0.5,"y":0,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(43,43,43,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis","yshift":-23.511830635118308},{"text":"Arikaree River","x":0.15238095238095237,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(36,86,107,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Caribou Creek","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(36,86,107,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Lewis Run","x":0.84761904761904761,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(36,86,107,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,6.5999999999999996],"tickmode":"array","ticktext":["Dissolved oxygen","Water cloudiness","Specific conductance","Water level","Water temperature","Time"],"tickvals":[1,2,3,3.9999999999999996,5,6],"categoryorder":"array","categoryarray":["Dissolved oxygen","Water cloudiness","Specific conductance","Water level","Water temperature","Time"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(43,43,43,1)","family":"","size":13.283520132835205},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":0.30476190476190473,"y0":0,"y1":26.301369863013704,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","layer":"below","x0":0.3619047619047619,"x1":0.63809523809523805,"y0":0,"y1":26.301369863013704,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","layer":"below","x0":0.69523809523809521,"x1":1,"y0":0,"y1":26.301369863013704,"yanchor":1,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[-0.5,20.41],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,4.9999999999999991,10.000000000000002,14.999999999999998,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(43,43,43,1)","family":"","size":13.283520132835205},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.3619047619047619,0.63809523809523805],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"xaxis3":{"type":"linear","autorange":false,"range":[-0.5,20.41],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,4.9999999999999991,10.000000000000002,14.999999999999998,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(43,43,43,1)","family":"","size":13.283520132835205},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.69523809523809521,1],"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","height":350,"barmode":"relative","autosize":true},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"responsive":true,"displaylogo":false},"source":"A","attrs":{"141a81ece2849":{"xintercept":{},"type":"scatter"},"141a870b6e06b":{"x":{},"y":{},"xend":{},"yend":{}},"141a87647ca9c":{"x":{},"y":{},"colour":{},"text":{}}},"cur_data":"141a81ece2849","visdat":{"141a81ece2849":["function (y) ","x"],"141a870b6e06b":["function (y) ","x"],"141a87647ca9c":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-variable-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Relative importance of six factors in explaining nitrate patterns across three freshwater streams. Approximate values digitised visually from Kermorvant et al.&nbsp;(2023), Figure 4.
+Figure&nbsp;2: Relative importance of six factors in explaining nitrate patterns across three freshwater streams. Approximate values visually estimated from Kermorvant et al.&nbsp;(2023), Figure 4. Dark blue indicates the highest contribution at each site.
 </figcaption>
 </figure>
 </div>
 </div>
-</div>
-<p>At <strong>Lewis Run</strong>, specific conductance stood out as the most important measured variable, contributing more than 15% to the model’s explanatory power. It was also the most important measured variable at <strong>Caribou Creek</strong>, at around 10%. At <strong>Arikaree River</strong>, however, no single measured water-quality variable clearly dominated. Instead, changes over time played a particularly important role in explaining nitrate patterns <span class="citation" data-cites="kermorvant2023">(<a href="#ref-kermorvant2023" role="doc-biblioref">Kermorvant et al. 2023</a>)</span>.</p>
-<p>This comparison answers an important part of our original question: sensors can provide valuable information about nitrate across very different streams, but <strong>which measurements tell us the most depends on where we are monitoring</strong>.</p>
+<p>At <strong>Arikaree River</strong>, the factors had relatively similar contributions, with water temperature slightly higher at around 5%. At <strong>Caribou Creek</strong>, specific conductance stood out at around 10%, suggesting that this measure of water chemistry was particularly informative for understanding nitrate patterns.</p>
+<p>At <strong>Lewis Run</strong>, time had the highest contribution at around 16%. Unlike the other factors, time is not a water-quality measurement. Its importance suggests that changes across the monitoring period played a particularly important role, although the analysis cannot tell us exactly what caused those changes <span class="citation" data-cites="kermorvant2023">(<a href="#ref-kermorvant2023" role="doc-biblioref">Kermorvant et al. 2023</a>)</span>.</p>
+<p>These findings help answer our original question: <strong>the same factors can be useful across different streams, but their importance depends on where we are monitoring</strong>.</p>
 </section>
 <section id="what-does-this-mean-for-freshwater-monitoring" class="level2">
 <h2 class="anchored" data-anchor-id="what-does-this-mean-for-freshwater-monitoring">What does this mean for freshwater monitoring?</h2>
-<p>So, do sensors tell the same story everywhere? <strong>Not quite</strong>.</p>
-<p>The study shows that high-frequency sensors can provide a detailed picture of how nitrate changes alongside other water-quality conditions. Although the same six factors were useful across all three streams, their importance varied from place to place. <strong>This means the same factors may be worth considering across streams, but their monitoring priority should not be assumed to be the same everywhere</strong> <span class="citation" data-cites="kermorvant2023">(<a href="#ref-kermorvant2023" role="doc-biblioref">Kermorvant et al. 2023</a>)</span>.</p>
-<p>For freshwater monitoring, this makes <strong>local context important</strong>. A measurement that provides useful information about nitrate in one stream may be less informative in another. Rather than treating one monitoring approach as universal, environmental professionals can use this type of analysis to identify which measurements are most informative for their particular stream and make more targeted decisions about where monitoring resources are spent.</p>
-</section>
-<section id="what-should-we-take-from-this" class="level2">
-<h2 class="anchored" data-anchor-id="what-should-we-take-from-this">What should we take from this?</h2>
-<p>Monitoring nitrate is challenging because stream conditions can change quickly, and occasional water samples may not capture the full picture. High-frequency sensors can help fill this gap by providing a much more detailed view of how nitrate changes alongside other water-quality conditions.</p>
-<p>The study by <span class="citation" data-cites="kermorvant2023">Kermorvant et al. (<a href="#ref-kermorvant2023" role="doc-biblioref">2023</a>)</span> shows both the potential and the limits of this approach. Across three very different streams, the same six measurements were useful for understanding nitrate, and the final models explained about 99% of the variation in nitrate levels. However, the importance of individual measurements differed between sites. <strong>The key message is not that one sensor matters most everywhere, but that the value of each measurement depends on the stream being monitored.</strong></p>
-<p>These findings are promising, but they should not be treated as a universal recipe for freshwater monitoring. The study examined only three streams using roughly two years of data, and further work across more locations and longer periods is needed <span class="citation" data-cites="kermorvant2023">(<a href="#ref-kermorvant2023" role="doc-biblioref">Kermorvant et al. 2023</a>)</span>. Still, high-frequency sensor data can give environmental professionals a richer understanding of nitrate dynamics and help them make more informed, locally appropriate monitoring decisions.</p>
+<p>So, do sensors tell the same story everywhere? <strong>Not quite.</strong></p>
+<p>The study shows that high-frequency sensor data can help us understand nitrate patterns across different freshwater streams. Although the same six factors were useful at all three sites, their importance varied from place to place <span class="citation" data-cites="kermorvant2023">(<a href="#ref-kermorvant2023" role="doc-biblioref">Kermorvant et al. 2023</a>)</span>.</p>
+<p>For freshwater monitoring, this makes <strong>local conditions important</strong>. A measurement that provides useful information in one stream may be less informative in another. Rather than using the same monitoring priorities everywhere, environmental professionals can consider which measurements are most useful for their particular stream.</p>
+<p>However, the study examined only three streams over roughly two years. More research across different environments and longer periods is needed before applying these findings more broadly.</p>
+<div class="key-takeaway">
+<p><strong>The key takeaway</strong></p>
+<p>There is no single monitoring priority that works best everywhere. Understanding local conditions can help make freshwater monitoring more targeted and informative.</p>
+</div>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
@@ -296,7 +323,6 @@ Rodriguez-Perez, Javier, Catherine Leigh, Benoit Liquet, et al. 2020. <span>“D
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -373,7 +399,7 @@ Rodriguez-Perez, Javier, Catherine Leigh, Benoit Liquet, et al. 2020. <span>“D
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/ETC5523-2026\.github\.io\/etc5523-assignment-3-wrat0001-rgb\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
